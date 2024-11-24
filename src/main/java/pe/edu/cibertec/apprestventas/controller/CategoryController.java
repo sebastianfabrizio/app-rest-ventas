@@ -39,7 +39,7 @@ public class CategoryController {
         return new ResponseEntity<>(categoryService.save(category), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Category> actualizarCategoria(@RequestBody Category category, @PathVariable Integer id) {
         categoryService.findById(id).orElseThrow(()->
                 new ResourcesNotFoundException("La categoria con id "+id+ " no existe."));
