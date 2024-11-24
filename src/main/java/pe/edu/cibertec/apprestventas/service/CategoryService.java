@@ -25,9 +25,16 @@ public class CategoryService implements ICategoryService{
        return repository.findById(id);
     }
 
+
     @Override
     public Category save(Category category) {
         return repository.save(category);
+    }
+
+    @Override
+    public Category updateCategoryName(Category category) {
+      repository.actualizarNombreCategoria(category.getCategoryid(), category.getCategoryname());
+      return category;
     }
 
     @Override

@@ -9,5 +9,6 @@ public interface ICategoryService {
     List<Category> findAll();
     Optional<Category> findById(Integer id);
     Category save(Category category);
+    Category updateCategoryName(Category category);
     void delete(int id);
 }

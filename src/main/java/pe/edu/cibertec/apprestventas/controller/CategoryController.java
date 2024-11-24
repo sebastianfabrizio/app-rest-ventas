@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.cibertec.apprestventas.exceptions.ResourcesNotFoundException;
 import pe.edu.cibertec.apprestventas.model.Category;
-import pe.edu.cibertec.apprestventas.service.CategoryService;
+import pe.edu.cibertec.apprestventas.service.ICategoryService;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/category")
 public class CategoryController {
-    private final CategoryService categoryService;
+    private final ICategoryService categoryService;
 
 
     @GetMapping
@@ -39,12 +39,21 @@ public class CategoryController {
         return new ResponseEntity<>(categoryService.save(category), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Category> actualizarCategoria(@RequestBody Category category, @PathVariable Integer id) {
         categoryService.findById(id).orElseThrow(()->
                 new ResourcesNotFoundException("La categoria con id "+id+ " no existe."));
         category.setCategoryid(id);
         return new ResponseEntity<>(categoryService.save(category), HttpStatus.OK);
+    }
+
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Category> actualizarNombreCategoria(@RequestBody Category category, @PathVariable Integer id) {
+        categoryService.findById(id).orElseThrow(()->
+                new ResourcesNotFoundException("La categoria con id "+id+ " no existe."));
+        category.setCategoryid(id);
+        return new ResponseEntity<>(categoryService.updateCategoryName(category), HttpStatus.OK);
     }
 
 
