@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface ICategoryService {
     List<Category> findAll();
     Optional<Category> findById(Integer id);
-    void save(Category category);
+    Category save(Category category);
     void delete(int id);
 }
