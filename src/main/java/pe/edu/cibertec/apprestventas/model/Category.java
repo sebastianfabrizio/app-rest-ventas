@@ -11,7 +11,7 @@ import lombok.Setter;
 @Table(name = "Categories")
 public class Category {
     @Id
-    private int categoryid;
+    private Integer categoryid;
     private String categoryname;
     private String description;
 }

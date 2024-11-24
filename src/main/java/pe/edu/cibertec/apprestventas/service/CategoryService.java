@@ -7,12 +7,13 @@ import pe.edu.cibertec.apprestventas.model.Category;
 import pe.edu.cibertec.apprestventas.repository.CategoryRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class CategoryService implements ICategoryService{
 
-    private CategoryRepository repository;
+    private final CategoryRepository repository;
 
     @Override
     public List<Category> findAll() {
@@ -20,13 +21,13 @@ public class CategoryService implements ICategoryService{
     }
 
     @Override
-    public Category findById(int id) {
-        return repository.findById(id).orElse(null);
+    public Optional<Category> findById(Integer id) {
+       return repository.findById(id);
     }
 
     @Override
-    public Category save(Category category) {
-        return repository.save(category);
+    public void save(Category category) {
+        repository.save(category);
     }
 
     @Override
